@@ -34,6 +34,8 @@ body {
   justify-content: center;
   padding: 24px;
   background: rgba(0, 0, 0, 0.75);
+  /* Hard-block interactions with the app behind it */
+  pointer-events: auto;
 }
 
 .rotate-overlay[hidden] {
@@ -66,24 +68,7 @@ body {
   margin-bottom: 16px;
 }
 
-.rotate-overlay__btn {
-  all: unset;
-  cursor: pointer;
-  display: inline-block;
-  width: 84px;
-  height: 84px;
-  image-rendering: pixelated;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-image: url("icons/ok.png");
-  filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.35));
-}
-
-.rotate-overlay__btn:active {
-  transform: translateY(2px);
-  filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.35));
-}
+/* (no dismiss button by design) */
 
 .container {
   width: 100%;
