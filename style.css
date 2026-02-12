@@ -341,6 +341,13 @@ body {
   }
 }
 
+/* Mobile portrait: hide menu buttons entirely (we hard-block with rotate overlay) */
+@media (max-width: 600px) and (orientation: portrait) {
+  .controls-area {
+    display: none;
+  }
+}
+
 /* Mobile landscape (short viewport height) */
 @media (max-height: 450px) and (orientation: landscape) {
   .timer-area {
