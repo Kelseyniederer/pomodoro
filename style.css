@@ -238,16 +238,16 @@ body {
   }
 
   .timer {
-    font-size: 3rem;
+    font-size: 2.6rem;
     text-shadow: 2px 2px 0 #1a1a2e;
   }
 
   #status {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 
   .controls-area {
-    bottom: 12%;
+    bottom: 7%;
     padding: 1rem;
   }
 
@@ -274,5 +274,56 @@ body {
   #save-btn.settings-ok-btn {
     width: 40px;
     height: 40px;
+  }
+}
+
+/* Mobile landscape (short viewport height) */
+@media (max-height: 450px) and (orientation: landscape) {
+  .timer-area {
+    top: 6%;
+  }
+
+  .timer {
+    font-size: 2.2rem;
+    margin-bottom: 0.35rem;
+  }
+
+  #status {
+    font-size: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .controls-area {
+    /* give room below the buttons for the dropdown */
+    padding: 0.5rem 0.75rem;
+  }
+
+  .icon-btn {
+    width: 72px;
+    height: 72px;
+  }
+
+  .settings {
+    /* In landscape, show settings UNDER the buttons, but keep it compact */
+    /* Pull it upward a bit so it stays on-screen without moving the buttons */
+    top: calc(100% - 10px);
+    bottom: auto;
+    gap: 0.6rem;
+  }
+
+  .setting input {
+    width: 42px;
+    height: 30px;
+    padding: 0.25rem;
+    font-size: 0.5rem;
+  }
+
+  .setting label {
+    font-size: 0.32rem;
+  }
+
+  #save-btn.settings-ok-btn {
+    width: 30px;
+    height: 30px;
   }
 }
