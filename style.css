@@ -9,6 +9,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -18,18 +19,26 @@ body {
   background: #1a1a2e;
   font-family: system-ui, sans-serif;
   color: white;
+  /* More stable on mobile when address bar / keyboard changes viewport */
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
 }
 
 .container {
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
   overflow: hidden;
 }
 
 .phone-frame {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
   overflow: hidden;
 }
 
@@ -215,6 +224,13 @@ body {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* iOS Safari: prevent auto-zoom-on-focus by ensuring >=16px font size */
+@supports (-webkit-touch-callout: none) {
+  .setting input {
+    font-size: 16px;
+  }
+}
+
 .setting input:focus {
   outline: 2px solid #e94560;
 }
@@ -264,7 +280,11 @@ body {
     width: 50px;
     padding: 0.4rem;
     height: 40px;
-    font-size: 0.6rem;
+    font-size: 16px; /* prevents iOS focus zoom */
+    /* Keep computed font-size >=16px (no iOS zoom) but visually smaller */
+    transform: scale(0.78);
+    transform-origin: center;
+    line-height: 1;
   }
 
   .setting label {
@@ -295,7 +315,7 @@ body {
 
   .controls-area {
     /* give room below the buttons for the dropdown */
-    padding: 0.5rem 0.75rem;
+    padding: 0.1rem 0.75rem;
   }
 
   .icon-btn {
@@ -313,9 +333,12 @@ body {
 
   .setting input {
     width: 42px;
-    height: 30px;
+    height: 34px;
     padding: 0.25rem;
-    font-size: 0.5rem;
+    font-size: 16px; /* prevents iOS focus zoom in landscape too */
+    transform: scale(0.72);
+    transform-origin: center;
+    line-height: 1;
   }
 
   .setting label {
