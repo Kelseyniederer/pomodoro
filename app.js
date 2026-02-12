@@ -12,6 +12,8 @@ const startBtn = document.getElementById('start-btn');
 const resetBtn = document.getElementById('reset-btn');
 const settingsBtn = document.getElementById('settings-btn');
 const saveBtn = document.getElementById('save-btn');
+const rotateOverlay = document.getElementById('rotate-overlay');
+const rotateDismissBtn = document.getElementById('rotate-dismiss');
 const statusEl = document.getElementById('status');
 const workVideo = document.getElementById('work-video');
 const breakVideo = document.getElementById('break-video');
@@ -31,6 +33,28 @@ function sanitizeInput(input) {
 
 sanitizeInput(workInput);
 sanitizeInput(breakInput);
+
+// "Rotate your phone" prompt (mobile portrait)
+const ROTATE_PROMPT_STORAGE_KEY = 'dismissRotatePrompt';
+const rotatePromptQuery = window.matchMedia('(max-width: 600px) and (orientation: portrait)');
+
+function updateRotatePrompt() {
+  if (!rotateOverlay) return;
+  const dismissed = localStorage.getItem(ROTATE_PROMPT_STORAGE_KEY) === '1';
+  rotateOverlay.hidden = dismissed || !rotatePromptQuery.matches;
+}
+
+if (rotateDismissBtn) {
+  rotateDismissBtn.addEventListener('click', () => {
+    localStorage.setItem(ROTATE_PROMPT_STORAGE_KEY, '1');
+    updateRotatePrompt();
+  });
+}
+
+rotatePromptQuery.addEventListener?.('change', updateRotatePrompt);
+window.addEventListener('resize', updateRotatePrompt);
+window.addEventListener('orientationchange', updateRotatePrompt);
+updateRotatePrompt();
 
 // Responsive work video switching
 const MOBILE_BREAKPOINT = 600;
